@@ -64,35 +64,33 @@
 </head>
 <body>
 
+
+	
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Layout-Guided multi-view driving scene video generation with latent diffusion model </h1>
+          <h1 class="title is-1 publication-title">DrivingDiffusion: Layout-Guided multi-view driving scene video generation with latent diffusion model </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a >Xiaofan Li</a>,</span>
+              Xiaofan Li ,</span>
             <span class="author-block">
-              <a >Yifu Zhang</a>,</span>
+              Yifu Zhang ,</span>
             <span class="author-block">
-              <a >Xiaoqing Ye</a>,</span>
+              Xiaoqing Ye ,</span>
             </span><br>
-
           </div>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block">Baidu Inc. ,</span>&nbsp;
-          </div>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>*</sup>Equal Contribution</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2309.09777.pdf"
+                <a href="https://arxiv.org/pdf/xxx.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -102,7 +100,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/JeffWang987/DriveDreamer"
+                <a href="https://github.com/shalfun/DrivingDiffuison"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -138,21 +136,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            World models, especially in autonomous driving, are trending and drawing extensive attention due to its 
-            capacity for comprehending driving environments. The established world model holds immense potential 
-            for the generation of high-quality driving videos, and driving policies for safe maneuvering. However, 
-            a critical limitation in relevant research lies in its predominant focus on gaming environments or simulated 
-            settings, thereby lacking the representation of real-world driving scenarios. Therefore, we introduce 
-            DriveDreamer, a pioneering world model entirely derived from real-world driving scenarios. Regarding that 
-            modeling the world in intricate driving scenes entails an overwhelming search space, we propose harnessing 
-            the powerful diffusion model to construct a comprehensive representation of the complex environment. Furthermore, 
-            we introduce a two-stage training pipeline. In the initial phase, DriveDreamer acquires a deep understanding of 
-            structured traffic constraints, while the subsequent stage equips it with the ability to anticipate future states. 
-            The proposed DriveDreamer is the first world model established from real-world driving scenarios. We instantiate 
-            DriveDreamer on the challenging nuScenes benchmark, and extensive experiments verify that DriveDreamer empowers precise,
-            controllable video generation that faithfully captures the structural constraints of real-world traffic scenarios.  
-            Additionally, DriveDreamer enables the generation of realistic and reasonable driving policies, opening avenues for 
-            interaction and practical applications.
+            With the increasing popularity of autonomous driving based on the powerful and unified bird's-eye-view (BEV) representation, a demand for high-quality and large-scale multi-view video data with accurate annotation is urgently required. However, such large-scale multi-view data is hard to obtain due to expensive collection and annotation costs. To alleviate the problem, we propose a spatial-temporal consistent diffusion model DrivingDiffusion, to generate realistic multi-view videos controlled by ground truth 3D layout. There are three challenges when synthesizing multi-view videos given 3D layouts: How to keep the 1) cross-view consistency and 2) cross-frame consistency? 3) How to guarantee the quality of the generated instances? Our DrivingDiffusion solves the problem by cascading the multi-view single-frame image generation step and the single-view video generation step shared by multiple cameras. In the multi-view model, the consistency of multi-view images is ensured by the cross-view attention, and we also introduce the local text prompt to effectively improve the quality of generated instances. In the temporal model, we force the temporal continuity by cross-attention along the time dimension for a single view. Without any extra cost, our model can generate large-scale realistic multi-camera driving videos in complex urban scenes, fueling the downstream driving tasks. The code will be made publicly available.
           </p>
         </div> 
       </div>
@@ -172,12 +156,7 @@
         <div class="hero-body">
           <img id="method" autoplay muted loop playsinline height="100%" src="./static/images/method.png" style="width:100%;height:100%;">
           <p>
-            The DriveDreamer framework begins with an initial reference frame and its corresponding road structural information (i.e., HDMap and 3D box). Within this context, DriveDreamer leverages the proposed ActionFormer to predict forthcoming road structural features in the latent space. These predicted features serve as conditions and are provided to Auto-DM, which generates future driving videos. Simultaneously, the utilization of text prompts allows for dynamic adjustments to the driving scenario style (e.g., weather and time of the day). Moreover, DriveDreamer incorporates historical action information and the multi-scale latent features extracted from Auto-DM, which are combined to generate reasonable future driving actions.  In essence, DriveDreamer offers a comprehensive framework that seamlessly integrates multi-modal inputs to generate future driving videos and driving policies, thereby advancing the capabilities of autonomous-driving systems.
-			<!--/
-            Method overview: Starting from a randomly sampled latent code <span class="math inline">\(x_{T}^{1}\)</span>, we apply <span class="math inline">\(\Delta t\)</span> DDIM backward steps to obtain <span class="math inline">\(x_{T'}^{1}\)</span> using a pre-trained Stable Diffusion model (SD). A specified motion field results for each frame <span class="math inline">\(k\)</span> in a warping function <span class="math inline">\(W_k\)</span> that turns <span class="math inline">\(x_{T'}^{1}\)</span> to <span class="math inline">\(x_{T'}^{k}\)</span>. By enhancing the latent codes with motion dynamics, we determine the global scene and camera motion and achieve temporal consistency in the background and the global scene.
-            A subsequent DDPM forward application delivers latent codes <span class="math inline">\(x_{T}^{k}\)</span> for <span class="math inline">\(k=1,\ldots,m\)</span>. By using the (probabilistic) DDPM method, a greater degree of freedom is achieved with respect to the motion of objects.
-            Finally, the latent codes are passed to our modified SD model using the proposed cross-frame attention, which uses keys and values from the first frame to generate the image of frame <span class="math inline">\(k=1,\ldots,m\)</span>. By using cross-frame attention,  the appearance and the identity of the foreground object are preserved  throughout the sequence. 
-            Optionally, we apply background smoothing. To this end, we employ salient object detection to obtain for each frame <span class="math inline">\(k\) a mask <span class="math inline">\(M^{k}\)</span> indicating the foreground pixels. Finally, for the background (using the mask <span class="math inline">\(M^{k}\)</span>), a convex combination between the latent code <span class="math inline">\(x_{t}^{1}\)</span> of frame one warped to frame <span class="math inline">\(k\)</span> and the latent code <span class="math inline">\(x_{t}^{k}\)</span> is used to further improve the temporal consistency of the background.-->
+            Training and inference pipelines of the multi-view video generation model DrivingDiffusion . For training, we separately train the multi-view model and the temporal model. The two models share similar structures except for the purple parts and orange parts. For inference, we concat the two models in a cascaded manner. In stage 1, the multi-view model generates the first multi-view frame of the video. Then in stage 2, the first multi-view frame is set as the key frame of the temporal model. Finally the temporal model generates video frames for each view to form the final multi-view video.
           </p>
         </div>
       </div>
@@ -242,7 +221,7 @@
 
 	
 	
-<section class="section" id="BibTeX">
+<!-- <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <p> If you use our work in your research, please cite: </p>
@@ -254,7 +233,10 @@
 }</code></pre>
   </div>
 </section>
+ -->
 
+
+	
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
