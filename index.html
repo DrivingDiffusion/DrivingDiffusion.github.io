@@ -214,6 +214,41 @@ Diagram of the multi-view video generation framework DrivingDiffusion. For train
  -->
 	    
   <h4 class="title">2. Multi-view video generation of driving scene controlled by 3Dlayout </h4>
+	<style>  
+	.video-container {  
+	  display: grid;  
+	  grid-template-columns: repeat(2, 1fr);  
+	  grid-template-rows: repeat(2, 1fr);  
+	  gap: 10px; /* 视频间的间距 */  
+	}  
+	.video-container video {  
+	  width: 100%; /* 视频的宽度 */  
+	  height: 100%; /* 视频的高度 */  
+	}  
+	</style>  
+ 
+  
+<div class="video-container">  
+  <video controls>  
+    <source src="1.mp4" type="video/mp4">  
+    Your browser does not support the video tag.  
+  </video>  
+  <video controls>  
+    <source src="2.mp4" type="video/mp4">  
+    Your browser does not support the video tag.  
+  </video>  
+  <video controls>  
+    <source src="3.mp4" type="video/mp4">  
+    Your browser does not support the video tag.  
+  </video>  
+  <video controls>  
+    <source src="4.mp4" type="video/mp4">  
+    Your browser does not support the video tag.  
+  </video>  
+</div>  
+
+
+	    
     <div class="container is-max-desktop">
         <video preload="auto"poster="" id="tree" autoplay controls muted loop width="1000px" outline="0px"> 
           <source src="./static/videos/1.mp4"
