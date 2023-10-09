@@ -158,7 +158,7 @@
         <div class="hero-body">
           <img id="method" autoplay muted loop playsinline height="100%" src="./static/images/main.png" style="width:100%;height:100%;">
           <p>
-Diagram of the multi-view video generation framework DrivingDiffusion. For training, we separately train the multi-view model and the temporal model. These two models share similar structures, with the exception of the orange and purple components. During the inference stage, the two models are concatenated in a cascaded manner. First, the multi-view model generates the initial multi-view frame of the video. This frame is then set as the keyframe for the temporal model. Lastly, the temporal model generates video frames for each view, forming the final multi-view video.          </p>
+		Diagram of the multi-view video generation framework DrivingDiffusion. For training, we separately train the multi-view model and the temporal model. These two models share similar structures, with the exception of the orange and purple components. During the inference stage, the two models are concatenated in a cascaded manner. First, the multi-view model generates the initial multi-view frame of the video. This frame is then set as the keyframe for the temporal model. Lastly, the temporal model generates video frames for each view, forming the final multi-view video.          </p>
         </div>
       </div>
     </section>
@@ -172,13 +172,25 @@ Diagram of the multi-view video generation framework DrivingDiffusion. For train
     <div class="hero-body">
         <img id="teaser" autoplay muted loop playsinline height="100%" src="./static/images/inference.png" style="width:100%;height:100%;">
       <p  style="font-size: 16px;"> 
-	      Multi-view Long video generation pipeline.
+	      Multi-view Long video generation pipeline. 
       </p>
     </div>
   </div>
 </section>
 
+<!-- 	inference fig -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <img id="teaser" autoplay muted loop playsinline height="100%" src="./static/images/future_pipe.png" style="width:100%;height:100%;">
+      <p  style="font-size: 16px;"> 
+	      Diagram of future generation pipeline. 
+      </p>
+    </div>
+  </div>
+</section>
 
+	
 <section class="section" id="Results">
   <div class="container is-max-desktop content">
     <h2 class="title">Results</h2>
