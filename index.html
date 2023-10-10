@@ -160,8 +160,8 @@
     <section class="hero method">
       <div class="container is-max-desktop">
         <div class="hero-body">
-	<hr> <!-- 分隔线 --> 
 	    <h3 class="title">[DrivingDiffusion] Training Pipeline</h2>
+		<hr> <!-- 分隔线 --> 
 
           <img id="method" autoplay muted loop playsinline height="100%" src="./static/images/main.png" style="width:100%;height:100%;">
           <p>
@@ -178,11 +178,11 @@
 
 
 <!-- 	inference fig -->
-<hr> <!-- 分隔线 --> 
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
         <h3 class="title">[DrivingDiffusion] Long Video Generate Pipeline</h2>
+	<hr> <!-- 分隔线 --> 
 
         <img id="teaser" autoplay muted loop playsinline height="100%" src="./static/images/inference.png" style="width:100%;height:100%;">
       <p  style="font-size: 16px;"> 
@@ -192,13 +192,18 @@
   </div>
 </section>
 
+
+
+
+	  
 <!-- 	future pipe fig -->
-<hr> <!-- 分隔线 --> 
+
 
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
 	<h3 class="title">[DrivingDiffusion-Future] Future Generate Pipeline</h2>
+	    <hr> <!-- 分隔线 --> 
         <img id="teaser" autoplay muted loop playsinline height="100%" src="./static/images/future_pipe2.png" style="width:90%;height:90%;">
       <p  style="font-size: 16px;"> 
 	      Diagram of future generation pipeline. We only input the first frame and predict the following frames. We believe that compared to the redundant information in the images, BEV layout is an intermediate representation that is easier for the model to learn the main elements of road conditions. We support both unconditional and text-controlled prediction of future scenes. For the text controller, we decouple the behavior of the ego-vehicle and other vehicles. (Omitting the concept branch and relying solely on the visual branch for future prediction can still yield satisfactory results in the short term.)
